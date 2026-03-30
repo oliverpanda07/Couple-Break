@@ -13,6 +13,7 @@ body {
 .container {
     width: 90%;
     max-width: 400px;
+    margin-top: -80px;
 }
 
 h1 {
@@ -41,12 +42,11 @@ h1 {
     border: none;
 }
 
-.progress {
-    width: 100%;
+#progress-bar {
     height: 10px;
-    background: #ffd6e0;
+    width: 0%;
+    background: #4da6ff;
     border-radius: 10px;
-    margin-top: 20px;
 }
 
 #progress-bar {
@@ -59,4 +59,8 @@ h1 {
 footer {
     margin-top: 20px;
     font-size: 14px;
+}
+#question {
+    font-size: 20px;
+    margin-top: 10px;
 }
