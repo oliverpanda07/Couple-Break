@@ -9,12 +9,17 @@
 <div class="container">
     <h1>Love Quiz ❤️</h1>
 
-    <div id="quiz">
-        <p id="question">Question here</p>
+    <div id="quiz-box">
+        <p id="qno">Question 1/10</p>
+        <h2 id="question">Question here</h2>
 
         <div class="buttons">
             <button class="btn" onclick="answer(true)">Yes</button>
             <button class="btn" onclick="answer(false)">No</button>
+        </div>
+
+        <div class="progress">
+            <div id="progress-bar"></div>
         </div>
     </div>
 
@@ -44,11 +49,12 @@ let score = 0;
 
 function loadQuestion() {
     document.getElementById("question").innerText = questions[currentQuestion];
+    document.getElementById("qno").innerText = "Question " + (currentQuestion+1) + "/10";
+    document.getElementById("progress-bar").style.width = ((currentQuestion)/10)*100 + "%";
 }
 
 function answer(ans) {
     if(ans) score++;
-
     currentQuestion++;
 
     if(currentQuestion < questions.length) {
@@ -59,7 +65,7 @@ function answer(ans) {
 }
 
 function showResult() {
-    document.getElementById("quiz").style.display = "none";
+    document.getElementById("quiz-box").style.display = "none";
     document.getElementById("result").style.display = "block";
 
     document.getElementById("score").innerText = "Your Score: " + score;
