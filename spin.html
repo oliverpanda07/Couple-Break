@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Spin Wheel</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .wheel-container {
+            margin-top: 30px;
+        }
+
+        #wheel {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            border: 8px solid white;
+            margin: auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section {
+            width: 50%;
+            height: 50%;
+            position: absolute;
+            background: #ff8fa3;
+            transform-origin: 100% 100%;
+            text-align: center;
+            line-height: 120px;
+            font-weight: bold;
+            color: white;
+        }
+
+        #spinBtn {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Spin the Wheel 🎡</h1>
+
+    <div class="wheel-container">
+        <div id="wheel"></div>
+    </div>
+
+    <button class="btn" id="spinBtn" onclick="spin()">SPIN</button>
+
+    <h2 id="result"></h2>
+    <a href="index.html" class="btn">Go Home</a>
+</div>
+
+<script>
+let options = ["Kiss 💋", "Hug 🤗", "Slap 😜", "Movie 🎬", "Date 🍽️", "Truth 😏", "Dare 🔥", "Song 🎵"];
+
+let wheel = document.getElementById("wheel");
+
+for(let i=0;i<options.length;i++){
+    let div = document.createElement("div");
+    div.className = "section";
+    div.style.transform = "rotate(" + (i*45) + "deg)";
+    div.innerHTML = options[i];
+    wheel.appendChild(div);
+}
+
+function spin(){
+    let deg = Math.floor(3000 + Math.random()*1000);
+    wheel.style.transition = "transform 4s";
+    wheel.style.transform = "rotate(" + deg + "deg)";
+
+    let resultIndex = Math.floor((deg % 360) / 45);
+    setTimeout(()=>{
+        document.getElementById("result").innerText = "Result: " + options[7 - resultIndex];
+    },4000);
+}
+</script>
+
+</body>
+</html>
