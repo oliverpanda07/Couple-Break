@@ -51,9 +51,11 @@
 </div>
 
 <script>
+<script>
 let options = ["Kiss 💋", "Hug 🤗", "Slap 😜", "Movie 🎬", "Date 🍽️", "Truth 😏", "Dare 🔥", "Song 🎵"];
 
 let wheel = document.getElementById("wheel");
+let currentRotation = 0;
 
 for(let i=0;i<options.length;i++){
     let div = document.createElement("div");
@@ -64,16 +66,27 @@ for(let i=0;i<options.length;i++){
 }
 
 function spin(){
-    let deg = Math.floor(3000 + Math.random()*1000);
-    wheel.style.transition = "transform 4s";
-    wheel.style.transform = "rotate(" + deg + "deg)";
+    // Reset transition
+    wheel.style.transition = "none";
+    wheel.style.transform = "rotate(" + currentRotation + "deg)";
 
-    let resultIndex = Math.floor((deg % 360) / 45);
+    // Force reflow (important)
+    wheel.offsetHeight;
+
+    // Fast spin
+    wheel.style.transition = "transform 4s cubic-bezier(0.33, 1, 0.68, 1)";
+    let extraRotation = Math.floor(2000 + Math.random()*2000);
+    currentRotation += extraRotation;
+    wheel.style.transform = "rotate(" + currentRotation + "deg)";
+
+    let resultIndex = Math.floor(((currentRotation % 360) / 45));
+    
     setTimeout(()=>{
         document.getElementById("result").innerText = "Result: " + options[7 - resultIndex];
     },4000);
 }
 </script>
+
 
 </body>
 </html>
