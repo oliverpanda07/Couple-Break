@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Love Quiz</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Love Quiz ❤️</h1>
+
+    <div id="quiz">
+        <p id="question">Question here</p>
+
+        <div class="buttons">
+            <button class="btn" onclick="answer(true)">Yes</button>
+            <button class="btn" onclick="answer(false)">No</button>
+        </div>
+    </div>
+
+    <div id="result" style="display:none;">
+        <h2 id="score"></h2>
+        <p id="message"></p>
+        <a href="index.html" class="btn">Go Home</a>
+    </div>
+</div>
+
+<script>
+let questions = [
+"Do you remember your partner's birthday?",
+"Do you like spending time together?",
+"Do you trust your partner?",
+"Do you share your secrets?",
+"Do you miss your partner?",
+"Do you enjoy trips together?",
+"Do you laugh together a lot?",
+"Do you support each other?",
+"Do you feel happy together?",
+"Do you love your partner?"
+];
+
+let currentQuestion = 0;
+let score = 0;
+
+function loadQuestion() {
+    document.getElementById("question").innerText = questions[currentQuestion];
+}
+
+function answer(ans) {
+    if(ans) score++;
+
+    currentQuestion++;
+
+    if(currentQuestion < questions.length) {
+        loadQuestion();
+    } else {
+        showResult();
+    }
+}
+
+function showResult() {
+    document.getElementById("quiz").style.display = "none";
+    document.getElementById("result").style.display = "block";
+
+    document.getElementById("score").innerText = "Your Score: " + score;
+
+    let message = "";
+
+    if(score <= 3) message = "Just Friends 😅";
+    else if(score <= 7) message = "Cute Couple 😊";
+    else message = "Perfect Couple ❤️";
+
+    document.getElementById("message").innerText = message;
+}
+
+loadQuestion();
+</script>
+
+</body>
+</html>
