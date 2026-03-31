@@ -46,17 +46,19 @@ let questions = [
 
 let currentQuestion = 0;
 let score = 0;
-
 function loadQuestion() {
     document.getElementById("question").innerText = questions[currentQuestion];
     document.getElementById("qno").innerText = "Question " + (currentQuestion+1) + "/10";
-    document.getElementById("progress-bar").style.width = ((currentQuestion + 1) / questions.length) * 100 + "%";
 
+    let progress = ((currentQuestion + 1) / questions.length) * 100;
+    document.getElementById("progress-bar").style.width = progress + "%";
+}
 function answer(ans) {
     if(ans) score++;
+
     currentQuestion++;
 
-    if(currentQuestion < questions.length) {
+    if(currentQuestion < questions.length){
         loadQuestion();
     } else {
         showResult();
