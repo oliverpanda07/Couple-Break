@@ -18,7 +18,7 @@
     overflow: hidden;
         }
 
-        .section {
+.section {
     position: absolute;
     width: 50%;
     height: 50%;
@@ -30,7 +30,9 @@
     font-size: 12px;
     font-weight: bold;
     color: white;
-        } 
+    top: 0;
+    left: 0;
+}
 
         #spinBtn {
             margin-top: 20px;
@@ -55,6 +57,7 @@
 <script>
 <script>
 let options = ["Kiss 💋", "Hug 🤗", "Slap 😜", "Movie 🎬", "Date 🍽️", "Truth 😏", "Dare 🔥", "Song 🎵"];
+    let colors = ["#ff4d6d","#ff8fa3","#ffb3c1","#ffc2d1","#cdb4db","#a2d2ff","#90dbf4","#8eecf5"];
 
 let wheel = document.getElementById("wheel");
 let currentRotation = 0;
@@ -62,7 +65,8 @@ let currentRotation = 0;
 for(let i=0;i<options.length;i++){
     let div = document.createElement("div");
     div.className = "section";
-  div.style.transform = "rotate(" + (i*45) + "deg) skewY(-45deg)";
+    div.style.background = colors[i];   // <-- ye line new
+    div.style.transform = "rotate(" + (i*45) + "deg) skewY(-45deg)";
     div.innerHTML = options[i];
     wheel.appendChild(div);
 }
